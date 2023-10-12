@@ -37,3 +37,9 @@ func Uppasswd(username string, newpasswd string) bool {
 		return false
 	}
 }
+
+func Back_userinfor(username string) User_infor {
+	var user User_infor
+	dao.DB.Where("name = ?", username).First(&user)
+	return user
+}

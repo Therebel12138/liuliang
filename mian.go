@@ -8,7 +8,7 @@ import (
 
 func main() {
 	Init_db()
-	DB.AutoMigrate(&model.User_infor{})
+	DB.AutoMigrate(&model.User_infor{}, &model.Rroperty_infor{})
 	defer DB.Close()
 	r := Init()
 	r.Run()

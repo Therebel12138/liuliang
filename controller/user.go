@@ -51,3 +51,9 @@ func Usernewpasswd(c *gin.Context) {
 		})
 	}
 }
+
+func User_backinfor(c *gin.Context) {
+	username := c.Query("username")
+	var userinfor = orm.Back_userinfor(username)
+	c.JSON(http.StatusOK, userinfor)
+}
