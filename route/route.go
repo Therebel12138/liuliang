@@ -11,5 +11,10 @@ func Init() *gin.Engine {
 	usergroup.POST("/register", ctrl.Userregister)
 	usergroup.POST("/login", ctrl.Userlogin)
 	usergroup.POST("/updatapasswd", ctrl.Usernewpasswd)
+	usergroup.GET("/back_infor", ctrl.User_backinfor)
+	pptgroup := r.Group("/property")
+	pptgroup.POST("/upload", ctrl.Pptupload)
+	pptgroup.POST("/search", ctrl.Pptsearch)
+	pptgroup.POST("/updata", ctrl.Pptupdata)
 	return r
 }
