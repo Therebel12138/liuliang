@@ -57,3 +57,16 @@ func User_backinfor(c *gin.Context) {
 	var userinfor = orm.Back_userinfor(username)
 	c.JSON(http.StatusOK, userinfor)
 }
+
+func Userdel(c *gin.Context) {
+
+	username := c.PostForm("username")
+	isroot := c.PostForm("isrooot")
+	sir, _ := strconv.ParseBool(isroot)
+	if sir {
+	}
+	orm.Userdel(username)
+	c.JSON(http.StatusOK, gin.H{
+		"msg": "成功删除",
+	})
+}

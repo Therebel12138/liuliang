@@ -43,3 +43,7 @@ func Back_userinfor(username string) User_infor {
 	dao.DB.Where("name = ?", username).First(&user)
 	return user
 }
+
+func Userdel(username string) {
+	dao.DB.Where("name = ?", username).Delete(User_infor{})
+}
