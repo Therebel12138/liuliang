@@ -12,6 +12,16 @@ type User_infor struct {
 	Secure_level int    `json:"secure_level"`
 }
 
+func Findname(name string) bool {
+	var use User_infor
+	dao.DB.Where("name = ?", name).First(&use)
+	if use.Name != "" {
+		return true
+	} else {
+		return false
+	}
+}
+
 func Dbuserlogin(name string, passwd string, isroot bool, scec int) {
 	user := User_infor{Name: name, Passwd: passwd, Isroot: isroot, Secure_level: scec}
 	dao.DB.Create(&user)

@@ -26,7 +26,10 @@ func Pptupload(c *gin.Context) {
 	t, _ := time.ParseInLocation("2006-01-02 15:04:05", updata_time, time.Local)
 	ppt := orm.Property_infor{Name: name, Secure_level: se, UpdateTime: t, Ismaintained: ism, Asset_class: ass, Brand_name: brand_name, Work_dpt: work_dpt}
 	orm.Pro_upload(ppt)
-	c.JSON(http.StatusOK, ppt)
+	c.JSON(http.StatusOK, gin.H{
+		"msg":   "成功创建",
+		"infor": ppt,
+	})
 }
 
 func Pptsearch(c *gin.Context) {
@@ -35,7 +38,12 @@ func Pptsearch(c *gin.Context) {
 	serc, _ := strconv.Atoi(secure_level)
 	var ppts []orm.Property_infor
 	ppts = orm.Pptsearch(searchname, serc)
-	c.JSON(http.StatusOK, ppts)
+	if len(ppts) != 0 {
+		c.JSON(http.StatusOK, gin.H{
+			"msg":  "成功返回",
+			"ppts": ppts,
+		})
+	}
 }
 
 func Pptupdata(c *gin.Context) {

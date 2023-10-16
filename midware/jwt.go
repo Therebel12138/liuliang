@@ -42,7 +42,7 @@ func parsetoken(tokenstring string) (*Claims, error) {
 	if claims, ok := token.Claims.(*Claims); ok && token.Valid {
 		return claims, nil
 	}
-	return nil, errors.New("invalid token")
+	return nil, errors.New("无效token")
 }
 
 func Sendtoken() func(c *gin.Context) {
